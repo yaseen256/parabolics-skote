@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 import React from "react"
 
 import { Switch, BrowserRouter as Router } from "react-router-dom"
@@ -16,7 +16,10 @@ import HorizontalLayout from "./components/HorizontalLayout/"
 import NonAuthLayout from "./components/NonAuthLayout"
 
 // Import scss
-import "./assets/scss/theme.scss"
+let themeColor = localStorage.getItem("themeColor")
+themeColor == "dark"
+  ? require("./assets/scss/theme-dark.scss")
+  : require("./assets/scss/theme.scss")
 
 // Import Firebase Configuration file
 // import { initFirebaseBackend } from "./helpers/firebase_helper"
@@ -41,7 +44,6 @@ fakeBackend()
 // initFirebaseBackend(firebaseConfig)
 
 const App = props => {
-
   function getLayout() {
     let layoutCls = VerticalLayout
     switch (props.layout.layoutType) {
@@ -88,7 +90,7 @@ const App = props => {
 }
 
 App.propTypes = {
-  layout: PropTypes.any
+  layout: PropTypes.any,
 }
 
 const mapStateToProps = state => {
